@@ -4,10 +4,10 @@ CREATE TABLE products(
 	key VARCHAR(5) NOT NULL,
 	name VARCHAR(40) NOT NULL,
 	subhead VARCHAR(255),
-	description VARCHAR(255),
+	description VARCHAR(1000),
 	rating FLOAT,
 	rating_count INT,
-	ingredients VARCHAR(1000),
+	ingredients VARCHAR(10000),
 	PRIMARY KEY (key)
 );
 	
