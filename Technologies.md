@@ -1,4 +1,5 @@
-Data Source: https://www.kaggle.com/tysonpo/ice-cream-dataset
+## Data Source 
+https://www.kaggle.com/tysonpo/ice-cream-dataset
 
 Ben & Jerrys
 - products.csv
@@ -8,16 +9,14 @@ Breyers
 - products.csv
 - reviews.csv
 
-Combined Brands
+Combined (Ben & Jerry's, Breyer's, Häagen-Dazs, Talenti)
 - products.csv
 - reviews.csv
 
-Häagen-Dazs
-- products.csv
-- reviews.csv
 
-Talenti
-- products.csv
-- reviews.csv
-
-Software:  Jupyter Notebook, Google Colab, Postgres, PgAdmin, Google SPARK framework
+## Software
+-  Jupyter Notebook
+-  Google Colab
+-  Postgres
+-  PgAdmin
+-  Google SPARK framework
