@@ -6,4 +6,4 @@ Because of the filtering, the model will be using the whole dataset as input, wh
 
 The initial preprocessed data containing products with high ratings can be located in the Resources folder. Anything with a rating greater than or equal to 4.0 was placed into a new dataframe (high_rating_df). The "subhead" column was dropped from this dataset because only Ben & Jerry's brand contained a subhead. Additional columns may be dropped during segment 2.
 
-Once the NLP process is complete, it will be decided if the data needs to be scaled. We will also need to convert the relevant string columns to a numerical format. Again, this will be done during the NLP process. 
+Once the NLP process is complete, it will be decided if the data needs to be scaled. We will also need to convert the relevant string columns to a numerical format and drop ones that can't be used.
