@@ -1,10 +1,4 @@
-## Data Source 
-https://www.kaggle.com/tysonpo/ice-cream-dataset
-
-
-Combined (Ben & Jerry's, Breyer's, Häagen-Dazs, Talenti)
-- products.csv
-- reviews.csv
+### Technologies Used
 
 
 ## Software
