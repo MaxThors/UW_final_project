@@ -45,3 +45,5 @@ FROM high_rating as hr
 INNER JOIN clean_reviews as cr
 ON hr.key = cr.key
 ORDER BY hr.key;
+
+SELECT * FROM combined
