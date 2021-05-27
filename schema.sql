@@ -31,19 +31,27 @@ CREATE TABLE high_rating(
 	FOREIGN KEY (key) REFERENCES products(key)
 );
 
+
+CREATE TABLE helpful_clean_reviews(
+	key VARCHAR(15) NOT NULL,
+	stars INT,
+	helpful_yes FLOAT,
+	helpful_no FLOAT,
+	text VARCHAR(10000),
+	FOREIGN KEY (key) REFERENCES products(key)
+);
+
 SELECT hr.key, 
 	hr.name,
 	hr.description,
 	hr.rating,
 	hr.rating_count,
-	cr.stars,
-	cr.helpful_yes,
-	cr.helpful_no,
-	cr.text
+	hc.stars,
+	hc.helpful_yes,
+	hc.helpful_no,
+	hc.text
 INTO combined
 FROM high_rating as hr
-INNER JOIN clean_reviews as cr
+INNER JOIN helpful_clean_reviews as hc
 ON hr.key = cr.key
 ORDER BY hr.key;
-
-SELECT * FROM combined
