@@ -53,5 +53,5 @@ SELECT hr.key,
 INTO combined
 FROM high_rating as hr
 INNER JOIN helpful_clean_reviews as hc
-ON hr.key = cr.key
+ON hr.key = hc.key
 ORDER BY hr.key;
