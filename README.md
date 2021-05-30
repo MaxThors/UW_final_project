@@ -30,6 +30,7 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 ### Scope of the notebook:
 source: nlp_feature_extraction_vectorizing.ipynb
 
+`<addr>`
 #### 1.  Data Inspection
 #### 2.  Add Sentiment Feature to data set
 #### 3.  Create Product Sentiment Reviews Dataset
@@ -39,8 +40,11 @@ source: nlp_feature_extraction_vectorizing.ipynb
 #### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
 #### 8.  Split the Data into Training and Testing
 #### 9.  Balanced Random Forest Classifier
+`<addr>`
 
-
+<br>
+<br>
+<br>
 
 #### 1.  Data Inspection
 
@@ -318,6 +322,11 @@ X = df_tfidf_text.drop(["key","stars","helpful_yes","helpful_no","rating","senti
 After segmenting features from the target, we train, test and split the data at 75% with sklearn's train_test_split.
 
 ![train_test_split](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/train_test_split.png)
+
+
+
+
+#### 9.  Balanced Random Forest Classifier
 
 
 
