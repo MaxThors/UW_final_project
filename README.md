@@ -71,7 +71,8 @@ Also, we will remove any duplicate data as it doesn't tell us anything new and m
 We can drop these duplicates now before our pre-processing begins.
 
 
-
+<br>
+<br>
 
 ***2.  Add Sentiment Feature to data set***
 
@@ -82,7 +83,8 @@ Here we assign a value of 1 to reflect positive sentiment. This consists of star
 Number of positive reviews: 2,739
 Number of negative reviews: 685
 
-
+<br>
+<br>
 
 
 ***3.  Create Product Sentiment Reviews Dataset***
@@ -90,7 +92,8 @@ Number of negative reviews: 685
 location: "Resources/product_sentiment_reviews.csv"
 
 
-
+<br>
+<br>
 
 ***4.  Tokenization, Normalization & Custom Stopword Filtering***
 
@@ -160,7 +163,8 @@ The model has extracted each individual word from the review text in a list call
 
 Where are the custom stopwords, you ask? At this time, we are focused on completing a working model by ensuring everything works. We will develop our list of custom stopwords as we begin to fully train the model and implement advanced feature extraction techniques. Stay tuned.
 
-
+<br>
+<br>
 
 ***5.  Extract the most common words***
 
@@ -187,11 +191,16 @@ most_common_words
 ```
 
 There are  500 unique words in the most common words list.
+<br>
 ![most_common_words](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/most_common_words.png)
-
+<br>
 And here's a pretty wordcloud displaying some of our most common words. 
-
+<br>
 ![most_common_words_wordcloud](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/most_common_words_wordcloud.png)
+
+
+<br>
+<br>
 
 ***6.  Create "Bag of Words" data set***
 
@@ -232,7 +241,8 @@ Here is an example showing the beauty of all our work so far.
 The model has extracted each individual word from the text, filtering out stopwords in the NLTK stopword library and our bag of words are limited to the 500 most common words.  There are still words that we would like to add to stopwords to create our custom stopwords, but for now we are happy to see the model is working as designed.
 
 
-
+<br>
+<br>
 
 ***7.  Term Frequency-Inverse Document Frequency (TF-IDF)***
 
@@ -307,7 +317,8 @@ Next, we merge the encoded TFIDF vector we created for our bag of words with the
 ![merge_encoded](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/merge_encoded.png)
 
 
-
+<br>
+<br>
 
 ***8.  Split the Data into Training and Testing***
 
@@ -325,7 +336,8 @@ After segmenting features from the target, we train, test and split the data at 
 ![train_test_split](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/train_test_split.png)
 
 
-
+<br>
+<br>
 
 ***9.  Balanced Random Forest Classifier***
 
