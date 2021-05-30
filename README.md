@@ -30,7 +30,7 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 ### Scope of the notebook:
 source: nlp_feature_extraction_vectorizing.ipynb
 
-`
+
 #### 1.  Data Inspection
 #### 2.  Add Sentiment Feature to data set
 #### 3.  Create Product Sentiment Reviews Dataset
@@ -40,12 +40,12 @@ source: nlp_feature_extraction_vectorizing.ipynb
 #### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
 #### 8.  Split the Data into Training and Testing
 #### 9.  Balanced Random Forest Classifier
-`
-<br>
+
 <br>
 <br>
 
-#### 1.  Data Inspection
+
+***1.  Data Inspection***
 
 We are starting with a review dataset ("Resources/helpful_clean_reviews_combined.csv") that has been filtered down to ice cream products that have achieved an overall amazon rating of 4 stars or higher, joined on the "key" with consumer reviews that have been filtered down to those that received more helpful_yes votes than helpful_no votes.
 
@@ -73,7 +73,7 @@ We can drop these duplicates now before our pre-processing begins.
 
 
 
-#### 2.  Add Sentiment Feature to data set
+***2.  Add Sentiment Feature to data set***
 
 Here we assign a value of 1 to reflect positive sentiment. This consists of star rating greater than or equal to 4. Any review with a star rating less than 4 gets a value of 0 to reflect negative sentiment. Remember, star rating is the rating left by the individual reviewer. It is different than the overall rating presented by Amazon.
 
@@ -85,14 +85,14 @@ Number of negative reviews: 685
 
 
 
-#### 3.  Create Product Sentiment Reviews Dataset
+***3.  Create Product Sentiment Reviews Dataset***
 
 location: "Resources/product_sentiment_reviews.csv"
 
 
 
 
-#### 4.  Tokenization, Normalization & Custom Stopword Filtering
+***4.  Tokenization, Normalization & Custom Stopword Filtering***
 
 Here is where all the magic of splitting the reviews into individual words, putting each word into lower case, lemmatizing each to its base form, removing punctuations and excluding stop words occurs.
 
@@ -162,7 +162,7 @@ Where are the custom stopwords, you ask? At this time, we are focused on complet
 
 
 
-#### 5.  Extract the most common words
+***5.  Extract the most common words***
 
 Next, we extract our "Bag of Words," also known as "Most Common Words."
 We are starting with 500 words to get an idea of the type of words we should normalize and filter out at with advanced feature exaction.
@@ -191,7 +191,7 @@ There are  500 unique words in the most common words list.
 
 
 
-#### 6.  Create "Bag of Words" data set
+***6.  Create "Bag of Words" data set***
 
 Now that the model has extracted the Bag of Words, we add the most common words from each review as a new column called bag_of_words. 
 The model will iterate through the list of word_features (same as most common words, excluding the frequency count) and append to the dataset. We create new list as a form of a checkpoint so not to overwrite any prior work we've done. This is important to maintain the integrity of the data since the computer doesn't automatically re-run all cells as we make changes to the code. 
@@ -232,7 +232,7 @@ The model has extracted each individual word from the text, filtering out stopwo
 
 
 
-#### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
+***7.  Term Frequency-Inverse Document Frequency (TF-IDF)***
 
 Term Frequency-Inverse Document Frequency (TF-IDF) statistically ranks the words by importance compared to the rest of the words in the text. This is also when the words are converted from text to numbers.
 
@@ -307,7 +307,7 @@ Next, we merge the encoded TFIDF vector we created for our bag of words with the
 
 
 
-#### 8.  Split the Data into Training and Testing
+***8.  Split the Data into Training and Testing***
 
 Here we define our training and testing data in preparation for the Random Forest Classifier model. 
 Sentiment is our target variable, "y." X represents our features, which is everything from the merged dataframe after we drop the following columns: "key","stars","helpful_yes","helpful_no","rating","sentiment."  These values add no value to sentiment, so we exclude them. 
@@ -325,10 +325,13 @@ After segmenting features from the target, we train, test and split the data at 
 
 
 
-#### 9.  Balanced Random Forest Classifier
+***9.  Balanced Random Forest Classifier***
+
+For this project we decided to go with a Random Forest model (RF) for our classifier. There were several reasons we chose this over other models. First, the preprocessing required is compatible with an RF model. Also, a RF model is not as prone to overfitting the data as a Decision Tree and we thought that was a risk with this dataset. However, with a RF, we are limited with regression but that is not as important with this dataset which is another reason why we chose this model. Lastly, RF can be used to rank the importance of input variables in a natural way and can handle thousands of input variables without variable deletion.
 
 
+The RF Model produces an Accuracy Score, Confusion Matrix and a Classification Report that highlights preciscion, recall and F1 scores. It also produces Top 10 Features Ranked by Importance.
 
+![top_10_features_RF](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/top_10_features_RF.png)
 
-we understand that this isn't a completely trained model, we still need to fine tune our features and reach an acceptable accuracy score.
-list strengths and weaknesses of the model. 
+We understand that neither the TF-IDF nor RF Models are completely trained model, but the model works and its ready for advance feature extraction and futher training. We still need to fine tune the features and reach an acceptable accuracy score.
