@@ -32,9 +32,9 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 #### 1.  Data Inspection
 #### 2.  Add Sentiment Feature to data set
 #### 3.  Create Product Sentiment Reviews Dataset
-#### 4.  Tokenize "text" words
-#### 5.  Bag of Words - Extract the most common words
-#### 6.  Create Tokenized Reviews data set
+#### 4.  Tokenization, Normalization & Custom Stopword Filtering
+#### 5.  Extract the most common words
+#### 6.  Create "Bag of Words" data set
 #### 7.  TFID Vectorizing for Supervised  ML algorithms
 
 
@@ -94,7 +94,7 @@ Here is where all the magic of splitting the reviews into individual words, putt
 We perform this step with the NLTK library as it is the most popular in education and research for NLP.  
 
 
-Here are the dependencies for this stage:
+Here are the dependencies:
 
 ```
 # import the Tokenizer library
@@ -113,4 +113,157 @@ stop_words = set(stopwords.words('english'))
 
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
+
+from nltk import FreqDist
 ```
+
+We begin by creating a DataFrame, df_tokenize, with the product_sentiment_reviews table created in step 3. 
+(location: "Resources/product_sentiment_reviews.csv")
+
+Then we extract each individual word from the review into a list, with special attention to filter out stopwords.
+Note: There are comments within the code to explain each line's purpose.
+
+``` 
+# initialize list to hold words
+all_words = []
+
+
+for i in range(len(df_tokenize['text'])):
+    # separate review text into a list of words
+    tokens = reTokenizer.tokenize(df_tokenize['text'][i])
+    
+   
+    df_tokenize['text'][i] = []
+    
+    # iterate through tokens
+    for word in tokens:
+        # lower the case of each word
+        word = word.lower()
+        # exclude stop words
+        if word not in stop_words:
+            
+            # Lemmatize words into a standard form and avoid counting the same word more than once
+            word = lemmatizer.lemmatize(word)
+            # append to list of all_words
+            all_words.append(word)
+            # append to text column of dataframe for appropriate row
+            df_tokenize['text'][i].append(word)
+```
+
+The model has extracted each individual word from the review text in a list called "all_words," which holds 6153 unique words total.
+
+
+Where are the custom stopwords, you ask? At this time, we are focused on completing a working model by ensuring everything works. We will develop our list of custom stopwords as we begin to fully train the model and implement advanced feature extraction techniques. Stay tuned.
+
+
+
+#### 5.  Extract the most common words
+
+Next, we extract our "Bag of Words," also known as "Most Common Words."
+We are starting with 500 words to get an idea of the type of words we should normalize and filter out at with advanced feature exaction.
+
+```
+# Extract the most common words from the list of all_words.
+
+from nltk import FreqDist
+
+# sort all of the words in the all_words list by frequency count
+all_words = FreqDist(all_words)
+# Extract the 500 most common words from the all_words list
+most_common_words = all_words.most_common(500)
+
+# create a list of most common words without the frequency count
+word_features = []
+for w in most_common_words:
+    word_features.append(w[0])
+
+#print 
+most_common_words
+```
+
+There are  500 unique words in the most common words list.
+![most_common_words](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/most_common_words.png)
+
+
+
+#### 6.  Create "Bag of Words" data set
+
+Now that the model has extracted the Bag of Words, we add the most common words from each review as a new column called bag_of_words. 
+The model will iterate through the list of word_features (same as most common words, excluding the frequency count) and append to the dataset. We create new list as a form of a checkpoint so not to overwrite any prior work we've done. This is important to maintain the integrity of the data since the computer doesn't automatically re-run all cells as we make changes to the code. 
+
+
+
+```
+# create Bag of Words DataFrame
+df_bagofwords = pd.DataFrame(df_tokenize)
+
+# create column for bag of words
+df_bagofwords['bag_of_words'] = ""
+
+# iterate dataframe to populate bag of words column
+for i in range(len(df_bagofwords['text'])):
+    # initialize empty column    
+    df_bagofwords['bag_of_words'][i] = []
+    
+    # iterate through df row by row
+    for word in df_bagofwords['text'][i]:
+        # if a word in 'text' is in the most common words
+        # note: this is simply the "most_common_words" without the count column
+        if word in word_features:
+            # if it is, add it to the bag of words cell
+            df_bagofwords['bag_of_words'][i].append(word)
+
+```
+
+![bag_of_words_dataset](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/bag_of_words_dataset.png)
+
+
+Here is an example showing the beauty of all our work so far. 
+
+![extraction_example](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/extraction_example.png)
+
+The model has extracted each individual word from the text, filtering out stopwords in the NLTK stopword library and our bag of words are limited to the 500 most common words.  There are still words that we would like to add to stopwords to create our custom stopwords, but for now we are happy to see the model is working as designed.
+
+
+
+
+#### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
+
+Term Frequency-Inverse Document Frequency (TF-IDF) statistically ranks the words by importance compared to the rest of the words in the text. This is also when the words are converted from text to numbers.
+
+Decision trees such as Random Forests are insensitive to monotone transformations of input features. Since multiplying by the same factor is a monotone transformation, TF-IDF is compatible with such models.  This is great as we are pre-processing for Random Forests, but the data is ready for other classifiers that may require TF-IDF as well. 
+
+Let's take a look at the code to complete TF-IDF.
+
+```
+# import dependencies
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# create new DataFrame to hold encoded values 
+df_tfidf_text = pd.DataFrame(df_bagofwords)
+
+# convert text list to string and create string column
+# Required for vectorizer. Running on a list will yield an error.
+df_tfidf_text['bag_of_words_str'] = df_tfidf_text['bag_of_words'].apply(lambda x: ','.join(map(str, x)))
+
+```
+
+![bag_of_words_str](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/bag_of_words_str.png)
+
+
+```
+# get 'text' term frequencies weighted by their relative importance (IDF)
+vectorizer2 = TfidfVectorizer()
+
+sparse_out_text = vectorizer2.fit_transform(df_tfidf_text['bag_of_words_str'])
+
+tdif_bagOfWords_df = pd.DataFrame(data = sparse_out_text.toarray(),
+                        columns = vectorizer2.get_feature_names())
+
+```
+
+
+
+
+we understand that this isn't a completely trained model, we still need to fine tune our features and reach an acceptable accuracy score.
+list strengths and weaknesses of the model. 
