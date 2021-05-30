@@ -17,7 +17,7 @@ We will use Natural Language Processing (NLP) to parse out the written reviews i
 
 NLP is the process of converting normal language to a machine readable format, which allows a computer to analyze text as if it were numerical data.  
 
-#### Information Extraction & Text Classification
+### Information Extraction & Text Classification
 source: nlp_feature_extraction_vectorizing.ipynb
 
 The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to pre-process large amounts of text data in order to prepare it for an NLP model that extract information and classifies text. 
@@ -27,18 +27,18 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 - Classifying text: For many of the aforementioned use cases to work, a computer must know how to classify a given piece of text. We will classify our "Bag of Words" by positive and negative sentiment. 
 
 
-#### Scope of the notebook:
+### Scope of the notebook:
 
-##### 1.  Data Inspection
-##### 2.  Add Sentiment Feature to data set
-##### 3.  Create Product Sentiment Reviews Dataset
-##### 4.  Tokenize "text" words
-##### 5.  Bag of Words - Extract the most common words
-##### 6.  Create Tokenized Reviews data set
-##### 7.  TFID Vectorizing for Supervised  ML algorithms
+#### 1.  Data Inspection
+#### 2.  Add Sentiment Feature to data set
+#### 3.  Create Product Sentiment Reviews Dataset
+#### 4.  Tokenize "text" words
+#### 5.  Bag of Words - Extract the most common words
+#### 6.  Create Tokenized Reviews data set
+#### 7.  TFID Vectorizing for Supervised  ML algorithms
 
 
-##### 1.  Data Inspection
+#### 1.  Data Inspection
 
 We are starting with a review dataset ("Resources/helpful_clean_reviews_combined.csv") that has been filtered down to ice cream products that have achieved an overall amazon rating of 4 stars or higher, joined on the "key" with consumer reviews that have been filtered down to those that received more helpful_yes votes than helpful_no votes.
 
@@ -63,7 +63,7 @@ Also, we will remove any duplicate data as it doesn't tell us anything new and m
 
 We can drop these duplicates now before our pre-processing begins.
 
-##### 2.  Add Sentiment Feature to data set
+#### 2.  Add Sentiment Feature to data set
 
 Here we assign a value of 1 to reflect positive sentiment. This consists of star rating greater than or equal to 4. Any review with a star rating less than 4 gets a value of 0 to reflect negative sentiment. Remember, star rating is the rating left by the individual reviewer. It is different than the overall rating presented by Amazon.
 
