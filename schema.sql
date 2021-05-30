@@ -50,7 +50,7 @@ SELECT hr.key,
 	hc.helpful_yes,
 	hc.helpful_no,
 	hc.text
-INTO combined
+INTO helpful_clean_reviews_combined
 FROM high_rating as hr
 INNER JOIN helpful_clean_reviews as hc
 ON hr.key = hc.key
