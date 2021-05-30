@@ -189,7 +189,9 @@ most_common_words
 There are  500 unique words in the most common words list.
 ![most_common_words](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/most_common_words.png)
 
+And here's a pretty wordcloud displaying some of our most common words. 
 
+![most_common_words_wordcloud](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/most_common_words_wordcloud.png)
 
 ***6.  Create "Bag of Words" data set***
 
