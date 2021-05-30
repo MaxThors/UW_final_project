@@ -18,7 +18,7 @@ We will use Natural Language Processing (NLP) to parse out the written reviews i
 NLP is the process of converting normal language to a machine readable format, which allows a computer to analyze text as if it were numerical data.  
 
 ### Information Extraction & Text Classification
-source: nlp_feature_extraction_vectorizing.ipynb
+
 
 The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to pre-process large amounts of text data in order to prepare it for an NLP model that extract information and classifies text. 
 
@@ -28,6 +28,7 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 
 
 ### Scope of the notebook:
+source: nlp_feature_extraction_vectorizing.ipynb
 
 #### 1.  Data Inspection
 #### 2.  Add Sentiment Feature to data set
@@ -35,8 +36,9 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 #### 4.  Tokenization, Normalization & Custom Stopword Filtering
 #### 5.  Extract the most common words
 #### 6.  Create "Bag of Words" data set
-#### 7.  TFID Vectorizing for Supervised  ML algorithms
-
+#### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
+#### 8.  Split the Data into Training and Testing
+#### 9.  Balanced Random Forest Classifier
 
 
 
@@ -248,19 +250,74 @@ df_tfidf_text['bag_of_words_str'] = df_tfidf_text['bag_of_words'].apply(lambda x
 
 ```
 
+
+Our bag of words are now in string format, enabling the TfidVectorizer to analyze each individual word.
+
 ![bag_of_words_str](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/bag_of_words_str.png)
+
+
+The TfidVectorizer now analyzes each individual word in our bag of words, filters out stop words via stemming. We allow this with tfidf as it groups all words which are derived from the same stem (i.e. delayed, delay), this grouping will increase the occurrence of this stem because frequencies are calculated using stem not words. It appears to perform better than the NLTK stopwords library, which again, we will investigate futher when training the model to achieve desired accuracy. 
 
 
 ```
 # get 'text' term frequencies weighted by their relative importance (IDF)
-vectorizer2 = TfidfVectorizer()
+tfidf = TfidfVectorizer(analyzer='word', stop_words = 'english')
 
-sparse_out_text = vectorizer2.fit_transform(df_tfidf_text['bag_of_words_str'])
+# create variable to hold independent features and TFIDF
+x = df_tfidf_text['bag_of_words_str']
 
-tdif_bagOfWords_df = pd.DataFrame(data = sparse_out_text.toarray(),
-                        columns = vectorizer2.get_feature_names())
+
+# Fit and transform independent features
+xtfidf = tfidf.fit_transform(x)
+
+# Create encoded TFIDF vector for bag of words
+tfdif_bagOfWords_df = pd.DataFrame(data = xtfidf.toarray(),
+                        # set column header as feature names           
+                        columns = tfidf.get_feature_names())
+                        
+# Rank top 20 terms from TFID in order of signifigance score
+terms = tfidf.get_feature_names()
+
+# sum tfidf frequency of each term through documents
+sums = xtfidf.sum(axis=0)
+
+# connecting term to its sums frequency
+data = []
+for col, term in enumerate(terms):
+    data.append( (term, sums[0,col] ))
+
+ranking = pd.DataFrame(data, columns=['term','rank'])
+term_rank = ranking.sort_values('rank', ascending=False)
+
+term_rank[:20]                        
 
 ```
+
+And viola, we can now confirm that the model is statistically ranking the bag of words by importance.
+
+![significance_rank](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/significance_rank.png)
+
+Next, we merge the encoded TFIDF vector we created for our bag of words with the original columns we'd like to keep. 
+
+![merge_encoded](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/merge_encoded.png)
+
+
+
+
+#### 8.  Split the Data into Training and Testing
+
+Here we define our training and testing data in preparation for the Random Forest Classifier model. 
+Sentiment is our target variable, "y." X represents our features, which is everything from the merged dataframe after we drop the following columns: "key","stars","helpful_yes","helpful_no","rating","sentiment."  These values add no value to sentiment, so we exclude them. 
+
+```
+# Segment the features from the target
+y = df_tfidf_text["sentiment"]
+X = df_tfidf_text.drop(["key","stars","helpful_yes","helpful_no","rating","sentiment"], axis=1)
+```
+
+After segmenting features from the target, we train, test and split the data at 75% with sklearn's train_test_split.
+
+![train_test_split](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/train_test_split.png)
 
 
 
