@@ -38,6 +38,8 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 #### 7.  TFID Vectorizing for Supervised  ML algorithms
 
 
+
+
 #### 1.  Data Inspection
 
 We are starting with a review dataset ("Resources/helpful_clean_reviews_combined.csv") that has been filtered down to ice cream products that have achieved an overall amazon rating of 4 stars or higher, joined on the "key" with consumer reviews that have been filtered down to those that received more helpful_yes votes than helpful_no votes.
@@ -63,8 +65,52 @@ Also, we will remove any duplicate data as it doesn't tell us anything new and m
 
 We can drop these duplicates now before our pre-processing begins.
 
+
+
+
 #### 2.  Add Sentiment Feature to data set
 
 Here we assign a value of 1 to reflect positive sentiment. This consists of star rating greater than or equal to 4. Any review with a star rating less than 4 gets a value of 0 to reflect negative sentiment. Remember, star rating is the rating left by the individual reviewer. It is different than the overall rating presented by Amazon.
 
 ![add_sentiment](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/add_sentiment.png)
+
+Number of positive reviews: 2,739
+Number of negative reviews: 685
+
+
+
+
+#### 3.  Create Product Sentiment Reviews Dataset
+
+location: "Resources/product_sentiment_reviews.csv"
+
+
+
+
+#### 4.  Tokenization, Normalization & Custom Stopword Filtering
+
+Here is where all the magic of splitting the reviews into individual words, putting each word into lower case, lemmatizing each to its base form, removing punctuations and excluding stop words occurs.
+
+We perform this step with the NLTK library as it is the most popular in education and research for NLP.  
+
+
+Here are the dependencies for this stage:
+
+```
+# import the Tokenizer library
+import nltk
+from nltk.tokenize import word_tokenize, RegexpTokenizer
+
+# RegexpTokenizer will tokenize according to any regular expression assigned. 
+# The regular expression r'\w+' matches any pattern consisting of one or more consecutive letters.
+reTokenizer = RegexpTokenizer(r'\w+')
+
+
+
+from nltk.corpus import stopwords
+from string import punctuation
+stop_words = set(stopwords.words('english'))
+
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+```
