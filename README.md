@@ -30,7 +30,7 @@ The primary goal of the nlp_feature_extraction_vectorizing.ipynb notebook is to 
 ### Scope of the notebook:
 source: nlp_feature_extraction_vectorizing.ipynb
 
-`<addr>`
+`
 #### 1.  Data Inspection
 #### 2.  Add Sentiment Feature to data set
 #### 3.  Create Product Sentiment Reviews Dataset
@@ -40,8 +40,7 @@ source: nlp_feature_extraction_vectorizing.ipynb
 #### 7.  Term Frequency-Inverse Document Frequency (TF-IDF)
 #### 8.  Split the Data into Training and Testing
 #### 9.  Balanced Random Forest Classifier
-`<addr>`
-
+`
 <br>
 <br>
 <br>
