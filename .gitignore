@@ -1,3 +1,5 @@
+config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +129,21 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+questions/import_error_reviews.png
+questions/import_error_products.png
+questions/import_error_products_noHeader.png
+text preprocessing using scikit-learn and spaCy.pdf
+Vine_Review_Analysis.ipynb
+svm_loan_approver.ipynb
+Module+20+-Project+Rubrics+-+Segment+2.pdf
+metis_Product_Review.ipynb
+credit_risk_resampling.ipynb
+credit_risk_ensemble.ipynb
+Amazon_Reviews_ETL.ipynb
+data_pre-processing-Copy1.ipynb
+data_pre-processing-Copy2.ipynb
+ice_cream_resampling.ipynb
+NLP_rating.ipynb
+NLP_reviews-Copy1.ipynb
+NLP_reviews.ipynb
+Resources/duplicate_reviews.csv
