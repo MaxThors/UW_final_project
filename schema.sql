@@ -71,3 +71,17 @@ FROM combined as co
 WHERE
 	co.helpful_yes > co.helpful_no;
 	
+
+-- Create tokenized text features table
+CREATE TABLE tokenized_text(
+	key VARCHAR(15) NOT NULL,
+	stars INT,
+	helpful_yes FLOAT,
+	helpful_no FLOAT,
+	text VARCHAR(10000),
+	rating FLOAT,
+	sentiment INT,
+	bag_of_words VARCHAR (8000)
+	bag_of_words_str VARCHAR(8000)
+	FOREIGN KEY (key) REFERENCES products(key)
+):
