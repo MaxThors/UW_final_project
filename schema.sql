@@ -41,17 +41,33 @@ CREATE TABLE helpful_clean_reviews(
 	FOREIGN KEY (key) REFERENCES products(key)
 );
 
+-- Create table that combines High Rating and Clean Reviews via inner join
 SELECT hr.key, 
 	hr.name,
 	hr.description,
 	hr.rating,
 	hr.rating_count,
-	hc.stars,
-	hc.helpful_yes,
-	hc.helpful_no,
-	hc.text
-INTO helpful_clean_reviews_combined
+	cr.stars,
+	cr.helpful_yes,
+	cr.helpful_no,
+	cr.text
+INTO combined
 FROM high_rating as hr
-INNER JOIN helpful_clean_reviews as hc
-ON hr.key = hc.key
+INNER JOIN clean_reviews as cr
+ON hr.key = cr.key
 ORDER BY hr.key;
+
+
+-- Create Helpful Clean Reviews Combined table
+SELECT
+	co.key,
+	co.stars,
+	co.helpful_yes,
+	co.helpful_no,
+	co.text,
+	co.rating
+INTO helpful_clean_reviews_combined
+FROM combined as co
+WHERE
+	co.helpful_yes > co.helpful_no;
+	
