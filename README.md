@@ -19,8 +19,7 @@ We will use Natural Language Processing (NLP) to parse out the written reviews i
 <<<<<<< HEAD
 ### Tableau Dashboard
 
-[Tableau Dashboard]
-(https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
+[Tableau Dashboard](https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
 
 ![data_overview](Images/dashboard.png)
 
