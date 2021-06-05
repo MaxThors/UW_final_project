@@ -3,7 +3,7 @@
 ## Segment One
 
 ### Data Cleaning and Analysis
-Pandas & Jupyter Notebook was used to clean the data by dropping columns that are unnecessary for our analysis and filtering the dataset for helpful reviews only.  Further exploratory analysis will be completed using Python.
+Pandas & Jupyter Notebook was used to clean the data by dropping columns that are unnecessary for our analysis and filtering the dataset for helpful and high rated reviews only.  Further exploratory analysis will be completed using Python.
 
 We are planning to use Github as the primary location to share our notebooks, but may incorporate Google Colab as well.
 
