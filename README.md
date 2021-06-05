@@ -16,16 +16,14 @@ We selected this topic to determine what ice cream flavor would be the best for 
 
 We will use Natural Language Processing (NLP) to parse out the written reviews in order to determine which words are most associated with higher ratings so we can better determine a flavor for our specialty ice cream. This process will help us finalize our decision on a new specialty flavor and maximize efficiency in our product development process.
 
-<<<<<<< HEAD
 ### Tableau Dashboard
 
-[Tableau Dashboard](https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
+[Tableau Dashboard]
+(https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
 
 ![data_overview](Images/dashboard.png)
 
 We created a Tableau Dashboard on the Tableau Public server in order to clearly illustrate some results we found in an interactive way that allows the viewer to filter to relevant data. The tree map and histogram can both be filtered by brand. The word cloud can be filtered by significance of the words. The tree map can be filtered by the average compund score from VADER for each flavor. Further, selecting either flavors from the Tree Map or bins of reviews in the histogram will filter the other visualization based on the selected data.
-=======
->>>>>>> main
 
 ## Machine Learning Model
 ### Natural Language Processing (NLP)
