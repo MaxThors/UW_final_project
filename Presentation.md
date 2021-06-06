@@ -1,1 +1,9 @@
-https://docs.google.com/presentation/d/1o12XOvr3tCzIAZenm0lMi9tgW_xn3FhA8FbdcHNaUy4/edit#slide=id.gdd3aa89b10_0_0
+# Presentation Plan
+
+Max: Slides 1-3 (2-3 minutes)
+
+Kylie: Slides 4-6 (2-3 minutes)
+
+Ashley: Slides 7-9 (2-3 minutes)
+
+Brian: Dashboard (2 minutes)
