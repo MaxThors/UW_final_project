@@ -7,13 +7,28 @@ For the duration of this project, Slack will be our primary communication vehicl
 We also have a standing weekly meeting at 7pm CST every Wednesday via Zoom, in addition to utilizing weekly class time to strategize next steps and perform our analysis.
 
 ### Presentation
+
+We selected this topic to determine what ice cream flavor would be the best for our new ice cream company. For our new flavor, we want a specialty flavor. Our source data is several csv files from Kaggle that compiled flavors and customer reviews from four different ice cream companies. The flavor dataset includes the company, name of the flavor, and a description. The review dataset includes a product rating from 1-5, votes on whether or not other customers found each review helpful, and a written-out review. We will use Natural Language Processing (NLP) to parse out the written reviews in order to determine which words are most associated with higher ratings so we can better determine a flavor for our specialty ice cream. We're going to use this process to maximize efficiency in our product development process.
+
+[Google Slides Presentation](https://docs.google.com/presentation/d/1o12XOvr3tCzIAZenm0lMi9tgW_xn3FhA8FbdcHNaUy4/edit#slide=id.gdc1ec10833_0_77)
+
 We selected this topic to determine what ice cream flavor would be the best for our new ice cream company. For our new flavor, we want a specialty flavor. Our source data is several csv files from Kaggle that compiled flavors and customer reviews from four different ice cream companies. The flavor dataset includes the company, name of the flavor, and a description. The review dataset includes an overall product rating from 1-5, votes on whether or not other customers found each review helpful, and a written-out review that includes an individual consumer star rating of their product experience ranging from 1-5. 
 
 We will use Natural Language Processing (NLP) to parse out the written reviews in order to determine which words are most associated with higher ratings so we can better determine a flavor for our specialty ice cream. This process will help us finalize our decision on a new specialty flavor and maximize efficiency in our product development process.
 
+### Tableau Dashboard
 
-# Text Data Pre-Processing
-## Natural Language Processing (NLP)
+[Tableau Dashboard]
+(https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
+
+![data_overview](Images/dashboard.png)
+
+We created a Tableau Dashboard on the Tableau Public server in order to clearly illustrate some results we found in an interactive way that allows the viewer to filter to relevant data. The tree map and histogram can both be filtered by brand. The word cloud can be filtered by significance of the words. The tree map can be filtered by the average compund score from VADER for each flavor. Further, selecting either flavors from the Tree Map or bins of reviews in the histogram will filter the other visualization based on the selected data.
+
+
+
+## Text Data Pre-Processing
+### Natural Language Processing (NLP)
 
 NLP is the process of converting normal language to a machine readable format, which allows a computer to analyze text as if it were numerical data.  
 
@@ -95,8 +110,8 @@ location: "Resources/product_sentiment_reviews.csv"
 <br>
 
 
-# Feature Engineering
-## Natural Language Processing (NLP)
+## Feature Engineering
+### Natural Language Processing (NLP)
 
 
 
@@ -483,14 +498,14 @@ It also produces Top 10 Features Ranked by Importance.
 
 
 
-# VADER Sentiment Analysis
+## VADER Sentiment Analysis
 
-When preparing our data for our analysi, we chose to exclude products with an overall Amazon rating less than 4.  This was to focus on the best products as we are hoping to identify the best specialty flavor to expand our business.  As a result, we were unable to achieve an acceptable accuracy score.  There simply isn't enough "negative sentiment" within the dataset to train the model in a way that it will accurately predict negative sentiment. 
+When preparing our data for our analysis, we chose to exclude products with an overall Amazon rating less than 4.  This was to focus on the best products as we are hoping to identify the best specialty flavor to expand our business.  As a result, we were unable to achieve an acceptable accuracy score.  There simply isn't enough "negative sentiment" within the dataset to train the model in a way that it will accurately predict negative sentiment. 
 
 To dive further, we designed a VADER Sentiment analysis model in hopes to gain more insight. 
 
 
-VADER produced a compound sentiment score for each review, which is great as we then had an unbiased score to compare against our formula of assuming all individual consumer star ratings of 4 or higher were positive. 
+VADER produced a compound sentiment score for each review, which is great as we then had an unbiased score to compare against our formula of assuming all individual consumer star ratings of 4 or higher were positive. VADER scores from -1 to 1, with anything greater than 0 considered positive.
 
 Positive reviews are what we want as we hope the reviews will aide in identifying a new specialty flavor. The VADER Sentiment Analyzer agrees with our formula for positive sentiment 93% of the time. That is GREAT!
 
@@ -503,8 +518,8 @@ So lets see...
 We now have VADER Top 20 Ice Cream Flavors.
 
 
-# Results
+## Results
 
-After lots of analysis, we have decided to go with Mint Chocolate Chip as our specialty flavor.  From our work, we have learned we must allow room in our data for negative sentiment to have a fully trained model.  Fortunately, our precision score for positive sentiment is 0.85 which meets our goal at this time.
+After lots of analysis, we have decided to go with Mint Chocolate Chip as our specialty flavor.  From our work, we have learned we must allow room in our data for negative sentiment to have a fully trained model.  Fortunately, our precision score for predicting positive sentiment is 0.85 which meets our goal at this time.
 
-
+We are very comfortable with VADER's compound score of 0.95 for Mint Chocolate Chip
