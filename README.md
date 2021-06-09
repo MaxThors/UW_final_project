@@ -18,10 +18,9 @@ We will use Natural Language Processing (NLP) to parse out the written reviews i
 
 ### Tableau Dashboard
 
-[Tableau Dashboard]
-(https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
+[Tableau Dashboard](https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
 
-!DASHBOARD](https://github.com/MaxThors/UW_final_project/blob/main/Resources/Images/dashboard.png)
+![DASHBOARD](https://github.com/MaxThors/UW_final_project/blob/main/Resources/Images/dashboard.png)
 
 We created a Tableau Dashboard on the Tableau Public server in order to clearly illustrate some results we found in an interactive way that allows the viewer to filter to relevant data. The tree map and histogram can both be filtered by brand. The word cloud can be filtered by significance of the words. The tree map can be filtered by the average compund score from VADER for each flavor. Further, selecting either flavors from the Tree Map or bins of reviews in the histogram will filter the other visualization based on the selected data.
 
