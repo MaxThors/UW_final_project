@@ -10,7 +10,14 @@ Max: Slides 1-3 (2-3 minutes)
 * As I said earlier, we can make the product development process more efficient and cut out several steps
 
 Kylie: Slides 4-6 (2-3 minutes)
-
+Considerations while examining data-
+  * These 4 brands were selected because they allowed for both positive and negative reviews on their websites whereas other companies only allowed 4 or 5 star reviews to be published
+  * Does not take into account any review sensoring or fake reviews written by someone who had not actually consumed the product and wrote a review solely to help/harm overall rating
+  * Should be noted, some reviews were written as a part of a promotion (similar to Amazon Vine Analysis project) but the exact details of different promotions are unknown
+  * Looked at ice creams with a 4+ overall rating then filtered products table and created high_rating file
+  * Using those products with a 4+ rating, filtered reviews file to contain only reviews of those products by joining high_rating and reviews files
+  * Once reviews had been filtered, we began out machine learning process
+  
 Ashley: Slides 7-9 (2-3 minutes)
 
 - After preprocessing the data, we performed Natural Language Processing NLP to acquire the words most associated with highest rated ice creams.
