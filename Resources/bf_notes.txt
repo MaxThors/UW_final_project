@@ -1,0 +1,6 @@
+Show off Dashboard
+Start with Word Cloud - Borne from TF-IDF, tied to our 127 words, NOT individual reviews. Play with slider. Leave below 69.6.
+
+Next to Histogram - Deals with individual reviews, as does Tree Map. Show off selecting between histogram and Tree map filter. Select/deselect brands.
+
+Finally to Tree Map - Select some blocks from tree map to show bidirectional compatibility. Talk about how tree map is the main visualization of sentiment for our data. Move to slider. Slide it to top to reveal our top flavor: mint chip.
