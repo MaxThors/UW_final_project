@@ -12,16 +12,14 @@ We selected this topic to determine what ice cream flavor would be the best for 
 
 [Google Slides Presentation](https://docs.google.com/presentation/d/1o12XOvr3tCzIAZenm0lMi9tgW_xn3FhA8FbdcHNaUy4/edit#slide=id.gdc1ec10833_0_77)
 
-We selected this topic to determine what ice cream flavor would be the best for our new ice cream company. For our new flavor, we want a specialty flavor. Our source data is several csv files from Kaggle that compiled flavors and customer reviews from four different ice cream companies. The flavor dataset includes the company, name of the flavor, and a description. The review dataset includes an overall product rating from 1-5, votes on whether or not other customers found each review helpful, and a written-out review that includes an individual consumer star rating of their product experience ranging from 1-5. 
 
 We will use Natural Language Processing (NLP) to parse out the written reviews in order to determine which words are most associated with higher ratings so we can better determine a flavor for our specialty ice cream. This process will help us finalize our decision on a new specialty flavor and maximize efficiency in our product development process.
 
 ### Tableau Dashboard
 
-[Tableau Dashboard]
-(https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
+[Tableau Dashboard](https://public.tableau.com/app/profile/brian.william.forth/viz/UW_final_project/IceCreamDashboard)
 
-![data_overview](Images/dashboard.png)
+![DASHBOARD](https://github.com/MaxThors/UW_final_project/blob/main/Resources/Images/dashboard.png)
 
 We created a Tableau Dashboard on the Tableau Public server in order to clearly illustrate some results we found in an interactive way that allows the viewer to filter to relevant data. The tree map and histogram can both be filtered by brand. The word cloud can be filtered by significance of the words. The tree map can be filtered by the average compund score from VADER for each flavor. Further, selecting either flavors from the Tree Map or bins of reviews in the histogram will filter the other visualization based on the selected data.
 
@@ -483,7 +481,7 @@ For this project we decided to go with a Random Forest model (RF) for our classi
 The RF Model produces an Accuracy Score, Confusion Matrix and a Classification Report that highlights preciscion, recall and F1 scores. 
 
 Accuracy Score<br>
-![acc_score](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/top_10_features_RF.png)<br>
+![acc_score](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/acc_score.png)<br>
 Confusion Matrix<br>
 ![conf_matrix](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/conf_matrix.png)<br>
 Classification Report<br>
@@ -495,12 +493,12 @@ It also produces Top 10 Features Ranked by Importance.
 
 ![top_10_features_RF](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/top_10_features_RF.png)
 
-
+Unfortunately, we learned the hard way that Random Forest for single words won’t predict the best specialty flavor for us and only predict if a single word within the review is associated with positive sentiment or not.
 
 
 ## VADER Sentiment Analysis
 
-When preparing our data for our analysis, we chose to exclude products with an overall Amazon rating less than 4.  This was to focus on the best products as we are hoping to identify the best specialty flavor to expand our business.  As a result, we were unable to achieve an acceptable accuracy score.  There simply isn't enough "negative sentiment" within the dataset to train the model in a way that it will accurately predict negative sentiment. 
+When preparing the text data for our analysis, we chose to exclude products with an overall Amazon rating less than 4.  This was to focus on the best products as we are hoping to identify the best specialty flavor to expand our business.  As a result, we were unable to achieve an acceptable accuracy score.  There simply isn't enough "negative sentiment" within the dataset to train the model in a way that it will accurately predict negative sentiment. 
 
 To dive further, we designed a VADER Sentiment analysis model in hopes to gain more insight. 
 
@@ -509,17 +507,20 @@ VADER produced a compound sentiment score for each review, which is great as we 
 
 Positive reviews are what we want as we hope the reviews will aide in identifying a new specialty flavor. The VADER Sentiment Analyzer agrees with our formula for positive sentiment 93% of the time. That is GREAT!
 
-In theory, we should be able to calculate the average "compound value" for each key, followed by ranking the top 10 to see which products achieved the highest sentiment based on text alone.
 
-So lets see...
+![VADER_acc_score](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/VADER_acc_score.png)
+In theory, using the groupby() method, we should be able to calculate the average "compound value" for each product key, followed by ranking the top 10 to see which products achieved the highest sentiment based on text alone.
+
+We performed all of the steps to do such and we now have VADER Top 20 Ice Cream Flavors.
 
 ![VADER_top20](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/VADER_top20.png)
 
-We now have VADER Top 20 Ice Cream Flavors.
 
 
 ## Results
 
 After lots of analysis, we have decided to go with Mint Chocolate Chip as our specialty flavor.  From our work, we have learned we must allow room in our data for negative sentiment to have a fully trained model.  Fortunately, our precision score for predicting positive sentiment is 0.85 which meets our goal at this time.
 
-We are very comfortable with VADER's compound score of 0.95 for Mint Chocolate Chip
+We are very comfortable with VADER's compound score of 0.95 for Mint Chocolate Chip.
+
+If we were to start over again, we would train our Random Forest Model on the full review dataset and not limit it to products with an Amazon rating of 4 or higher.  We found we were unable to achieve an acceptable balance accuracy score due to lack of "negative sentiment" reviews to train the model on predicting negative sentiment. While Random Forest isn't the best model to predict a flavor, we could have assigned values to the Most Common Words which would then create a compound score similar to the VADER Sentiment Analyzer. However, for our purposes and time constraints, no need to reinvent the wheel. VADER agreed with our formula for identifying positive sentiment 93% of the time and gave us a metric to identify the top flavor, Mint Chocolate.
