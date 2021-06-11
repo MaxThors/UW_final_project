@@ -481,7 +481,7 @@ For this project we decided to go with a Random Forest model (RF) for our classi
 The RF Model produces an Accuracy Score, Confusion Matrix and a Classification Report that highlights preciscion, recall and F1 scores. 
 
 Accuracy Score<br>
-![acc_score](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/top_10_features_RF.png)<br>
+![acc_score](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/acc_score.png)<br>
 Confusion Matrix<br>
 ![conf_matrix](https://github.com/MaxThors/UW_final_project/blob/ash_seg2/Resources/Images/conf_matrix.png)<br>
 Classification Report<br>
